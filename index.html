@@ -1,50 +1,134 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+	<title>reveal.js</title>
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-markdown>
+				<textarea data-template>
+					## Batterie- und Akkutechnologien
+					_Andreas Scharnreitner_
+				</textarea>
+			</section>
+			<section>
+				<section data-markdown>
+					<textarea data-template>
+						## Grundlegende Konzepte:
+						* Galvanische Zelle
+						* Elektrodenpotenzial
+						* Primär-/Sekundärzellen
+						* Energiedichte & Leistungsdichte
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						### Galvanische Zelle
+						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Galvanic_cell_labeled.svg/1200px-Galvanic_cell_labeled.svg.png" style="height: 550px" />
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						### Elektrodenpotenzial
+						Durch das Material der Elektroden wird die Spannung der Zelle festgelegt
+						<iframe src="https://de.wikipedia.org/wiki/Elektrochemische_Spannungsreihe#Elektrochemische_Spannungsreihe" style="height: 300px;width: 1000px"></iframe>
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						### Primär-/Sekundärzelle
+						* Primärzelle: Die Reaktionen an den Elektroden können elektrisch nicht Rückgängig gemacht werden
+						* Sekundärzelle: Die Reaktion an den Elektroden kann durch elektrischen Strom Rückgängig gemacht werden
+					</textarea>
+				</section>
+
+			</section>
+			<section data-markdown>
+				<textarea data-template>
+					## Danke für eure Aufmerksamkeit
+				</textarea>
+			</section>
 		</div>
+	</div>
 
-		<script src="js/reveal.js"></script>
+	<script src="js/reveal.js"></script>
 
-		<script>
+	<script>
 			// More info about config & dependencies:
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
 				hash: true,
 				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/highlight/highlight.js' },
-					{ src: 'plugin/notes/notes.js', async: true }
+				{ src: 'plugin/markdown/marked.js' },
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/highlight/highlight.js' },
+				{ src: 'plugin/notes/notes.js', async: true },
+				{ src: 'plugin/chalkboard/chalkboard.js'}
+				],
+				keyboard: {
+				67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+				66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+				46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
+				8: function() { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
+				68: function() { RevealChalkboard.download() },	// downlad recorded chalkboard drawing when 'd' is pressed
+				88: function() { RevealChalkboard.colorNext() },	// cycle colors forward when 'x' is pressed
+				89: function() { RevealChalkboard.colorPrev() },	// cycle colors backward when 'y' is pressed
+			},
+			chalkboard: {
+				boardmarkerWidth: 3,
+				chalkWidth: 7,
+				chalkEffect: 1.0,
+				src: null,
+				readOnly: undefined,
+				toggleChalkboardButton: { left: "30px", bottom: "30px", top: "auto", right: "auto" },
+				toggleNotesButton: { left: "30px", bottom: "30px", top: "auto", right: "auto" },
+				transition: 800,
+				theme: "chalkboard",
+				background: [ 'rgba(127,127,127,.1)' , 'plugin/chalkboard/img/blackboard.png' ],
+				grid: { color: 'rgb(50,50,10,0.5)', distance: 80, width: 2},
+				eraser: { src: 'plugin/chalkboard/img/sponge.png', radius: 20},
+				boardmarkers : [
+				{ color: 'rgba(100,100,100,1)', cursor: 'url(plugin/chalkboard/img/boardmarker-black.png), auto'},
+				{ color: 'rgba(30,144,255, 1)', cursor: 'url(plugin/chalkboard/img/boardmarker-blue.png), auto'},
+				{ color: 'rgba(220,20,60,1)', cursor: 'url(plugin/chalkboard/img/boardmarker-red.png), auto'},
+				{ color: 'rgba(50,205,50,1)', cursor: 'url(plugin/chalkboard/img/boardmarker-green.png), auto'},
+				{ color: 'rgba(255,140,0,1)', cursor: 'url(plugin/chalkboard/img/boardmarker-orange.png), auto'},
+				{ color: 'rgba(150,0,20150,1)', cursor: 'url(plugin/chalkboard/img/boardmarker-purple.png), auto'},
+				{ color: 'rgba(255,220,0,1)', cursor: 'url(plugin/chalkboard/img/boardmarker-yellow.png), auto'}
+				],
+				chalks: [
+				{ color: 'rgba(255,255,255,0.5)', cursor: 'url(plugin/chalkboard/img/chalk-white.png), auto'},
+				{ color: 'rgba(96, 154, 244, 0.5)', cursor: 'url(plugin/chalkboard/img/chalk-blue.png), auto'},
+				{ color: 'rgba(237, 20, 28, 0.5)', cursor: 'url(plugin/chalkboard/img/chalk-red.png), auto'},
+				{ color: 'rgba(20, 237, 28, 0.5)', cursor: 'url(plugin/chalkboard/img/chalk-green.png), auto'},
+				{ color: 'rgba(220, 133, 41, 0.5)', cursor: 'url(plugin/chalkboard/img/chalk-orange.png), auto'},
+				{ color: 'rgba(220,0,220,0.5)', cursor: 'url(plugin/chalkboard/img/chalk-purple.png), auto'},
+				{ color: 'rgba(255,220,0,0.5)', cursor: 'url(plugin/chalkboard/img/chalk-yellow.png), auto'}
 				]
-			});
-		</script>
-	</body>
+			}
+		});
+	</script>
+</body>
 </html>
